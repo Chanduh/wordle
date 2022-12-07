@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Werdl</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+
+
+</head>
+<body>
+
+<header>
+    <h1>W E R D L</h1>
+</header>
+
+<main>
+
+    <div id="gameWrapper">
+        <form name="row1" class="row" id="row1">
+            <input class="inputs" type="text" maxlength="1" id="letter1" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row1.letter2)">
+            <input class="inputs" type="text" maxlength="1" id="letter2" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row1.letter3)">
+            <input class="inputs" type="text" maxlength="1" id="letter3" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row1.letter4)">
+            <input class="inputs" type="text" maxlength="1" id="letter4" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row1.letter5)">
+            <input class="inputs" type="text" maxlength="1" id="letter5" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+        <form name="row2" class="row" id="row2">
+            <input class="inputs" type="text" maxlength="1" id="letter21" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row2.letter22)">
+            <input class="inputs" type="text" maxlength="1" id="letter22" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row2.letter23)">
+            <input class="inputs" type="text" maxlength="1" id="letter23" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row2.letter24)">
+            <input class="inputs" type="text" maxlength="1" id="letter24" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row2.letter25)">
+            <input class="inputs" type="text" maxlength="1" id="letter25" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+        <form name="row3" class="row" id="row3">
+            <input class="inputs" type="text" maxlength="1" id="letter31" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row3.letter32)">
+            <input class="inputs" type="text" maxlength="1" id="letter32" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row3.letter33)">
+            <input class="inputs" type="text" maxlength="1" id="letter33" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row3.letter34)">
+            <input class="inputs" type="text" maxlength="1" id="letter34" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row3.letter35)">
+            <input class="inputs" type="text" maxlength="1" id="letter35" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+        <form name="row4" class="row" id="row4">
+            <input class="inputs" type="text" maxlength="1" id="letter41" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row4.letter42)">
+            <input class="inputs" type="text" maxlength="1" id="letter42" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row4.letter43)">
+            <input class="inputs" type="text" maxlength="1" id="letter43" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row4.letter44)">
+            <input class="inputs" type="text" maxlength="1" id="letter44" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row4.letter45)">
+            <input class="inputs" type="text" maxlength="1" id="letter45" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+        <form name="row5" class="row" id="row5">
+            <input class="inputs" type="text" maxlength="1" id="letter51" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row5.letter52)">
+            <input class="inputs" type="text" maxlength="1" id="letter52" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row5.letter53)">
+            <input class="inputs" type="text" maxlength="1" id="letter53" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row5.letter54)">
+            <input class="inputs" type="text" maxlength="1" id="letter54" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row5.letter55)">
+            <input class="inputs" type="text" maxlength="1" id="letter55" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+        <form name="row6" class="row" id="row6">
+            <input class="inputs" type="text" maxlength="1" id="letter61" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row6.letter62)">
+            <input class="inputs" type="text" maxlength="1" id="letter62" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row6.letter63)">
+            <input class="inputs" type="text" maxlength="1" id="letter63" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row6.letter64)">
+            <input class="inputs" type="text" maxlength="1" id="letter64" onkeydown="return /[a-z]/i.test(event.key)" onKeyup="autoTab(this, document.row6.letter65)">
+            <input class="inputs" type="text" maxlength="1" id="letter65" onkeydown="return /[a-z]/i.test(event.key)">
+        </form>
+
+    </div>
+</main>
+
+<footer>
+    <p>Capy write @1912 Lasi Frink</p>
+</footer>
+
+
+</body>
+
+
+</html>
