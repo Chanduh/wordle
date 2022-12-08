@@ -40,8 +40,6 @@ document.addEventListener                 // HANDLE INPUT
 window.onload = function() {             // AUTO FOCUS ON BOX 1 w/o CLICKING
     // inputs[1].focus();
     getWord();
-
-  const wrapper = document.getElementById('gameWrapper')
   
   };
 
@@ -93,6 +91,21 @@ async function validWordCheck() {           // VALIDATE WORD IN DICTIONARY
     round++;
     column = 0;
     nextRow();
+  }
+
+  if (verdict.validWord === false){
+
+    for (let i = 0; i < 5; i++){
+      inputs[round*5-5 + i].style.backgroundColor = 'red';
+    }
+
+    setTimeout(function() {
+      for (let i = 0; i < 5; i++){
+        inputs[round*5-5 + i].style.backgroundColor = 'white';
+      }
+    }, 300);
+
+
   }
 
     return verdict;
