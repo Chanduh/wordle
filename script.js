@@ -155,7 +155,7 @@ function youWin() {                         // TRIGGER WIN
 function youLost() {                        // TRIGGER LOSS
   document.getElementById("header").innerHTML = "Better Luck Tomorrow!";
   document.getElementById("theWord").innerHTML = theSecretWord.toUpperCase();
-  theWord.style.backgroundColor = 'red';
+  theWord.style.backgroundColor = 'green';
 
   for (let i = 0; i < 30; i++) {
     inputs[i].style.backgroundColor = 'red';
