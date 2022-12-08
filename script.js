@@ -5,7 +5,8 @@ let theSecretWord;
 let theSecretWordArray;
 const theSecretObj = {};
 const guess = [];
-const letterBoxes = document.getElementsByClassName('inputs');
+let didYouWin = false;
+let inputs = document.getElementsByTagName('input');
 
 async function getWord() {                // GET WORD
   const secretWord = await fetch("https://words.dev-apis.com/word-of-the-day");
@@ -56,50 +57,7 @@ function backspace (x) {                    // DELETE LAST CHARACTER
     guess.pop();
     column--;
 
-    if (round === 1){
-      if (guess.length === 0) letter11.focus();
-      else if (guess.length === 1) letter12.focus();
-      else if (guess.length === 2) letter13.focus();
-      else if (guess.length === 3) letter14.focus();
-      else if (guess.length === 4) letter15.focus();
-    }
-    if (round === 2){
-      if (guess.length === 0) letter21.focus();
-      else if (guess.length === 1) letter22.focus();
-      else if (guess.length === 2) letter23.focus();
-      else if (guess.length === 3) letter24.focus();
-      else if (guess.length === 4) letter25.focus();
-    }
-    if (round === 3){
-      if (guess.length === 0) letter31.focus();
-      else if (guess.length === 1) letter32.focus();
-      else if (guess.length === 2) letter33.focus();
-      else if (guess.length === 3) letter34.focus();
-      else if (guess.length === 4) letter35.focus();
-    }
-    if (round === 4){
-      if (guess.length === 0) letter41.focus();
-      else if (guess.length === 1) letter42.focus();
-      else if (guess.length === 2) letter43.focus();
-      else if (guess.length === 3) letter44.focus();
-      else if (guess.length === 4) letter45.focus();
-    }
-    if (round === 5){
-      if (guess.length === 0) letter51.focus();
-      else if (guess.length === 1) letter52.focus();
-      else if (guess.length === 2) letter53.focus();
-      else if (guess.length === 3) letter54.focus();
-      else if (guess.length === 4) letter55.focus();
-    }
-    if (round === 6){
-      if (guess.length === 0) letter61.focus();
-      else if (guess.length === 1) letter62.focus();
-      else if (guess.length === 2) letter63.focus();
-      else if (guess.length === 3) letter64.focus();
-      else if (guess.length === 4) letter65.focus();
-    }
-
-    
+    inputs[round*5-5 + guess.length].focus()
 };                                       
 
 const addLetter = (char) => {               // ADD LETTER TO GUESS WORD ARRAY
@@ -140,27 +98,22 @@ async function validWordCheck() {      // VALIDATE WORD IN DICTIONARY
 
 const nextRow = () => {
   while (guess[0]){guess.pop();}
-  if (round === 2) letter21.focus();
-  if (round === 3) letter31.focus();
-  if (round === 4) letter41.focus();
-  if (round === 5) letter51.focus();
-  if (round === 6) letter61.focus();
-
-
+  if (round === 7 && didYouWin === false) youLost();
+  inputs[round*5-5].focus();
 }
-
-
 
 function charCheck() {
   let goodGuess = 0;
-  let tester = theSecretWordArray
+  let secLetter = theSecretWordArray
 
   for (let i = 0; i < 5; i++){
-    if (guess[i] === tester[i]) {
+    if (guess[i] === secLetter[i]) {
+      inputs[round*5-5 + i].style.backgroundColor = 'green';
+      inputs[round*5-5 + i].style.color = 'white';
       goodGuess++;
     }
-    if (guess[i] !== tester[i] && theSecretObj[tester]) {
-      
+    else if (theSecretObj[guess[i]]) {
+      inputs[round*5-5 + i].style.backgroundColor = 'yellow';
     }
   }
 
@@ -169,17 +122,22 @@ function charCheck() {
 };
 
 function youWin() {
+  didYouWin = true;
   document.getElementById("header").innerHTML = "YOU WIN!";
-  let inputs = document.getElementsByTagName('input');
   for (let i = 0; i < 5; i++) {
     inputs[round*5-5 + i].style.backgroundColor = 'green';
     inputs[round*5-5 + i].style.color = 'white';
-
   }
-
-
-
 }
 
+function youLost() {
+  document.getElementById("header").innerHTML = "Better Luck Tomorrow!";
+  document.getElementById("theWord").innerHTML = theSecretWord.toUpperCase();
+  theWord.style.backgroundColor = 'red';
 
+  for (let i = 0; i < 30; i++) {
+    inputs[i].style.backgroundColor = 'red';
+    inputs[i].style.color = 'white';
+  }
+}
 
