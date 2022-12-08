@@ -20,7 +20,6 @@ async function getWord() {                // GET WORD
   }
 }
 
-
 document.addEventListener                 // HANDLE INPUT
 ("keydown", function handleKeyPress(event) { 
 
@@ -39,8 +38,11 @@ document.addEventListener                 // HANDLE INPUT
 });
 
 window.onload = function() {             // AUTO FOCUS ON BOX 1 w/o CLICKING
-    // letter1.focus();
+    // inputs[1].focus();
     getWord();
+
+  const wrapper = document.getElementById('gameWrapper')
+  
   };
 
 function autoTab(original,destination) {    // AUTOTAB TO NEXT BOX
@@ -66,7 +68,7 @@ const addLetter = (char) => {               // ADD LETTER TO GUESS WORD ARRAY
   }
 };
 
- function submitWord() {
+ function submitWord() {                    // HANDLE ENTER
 
   if (guess.length < 5) return;
   if (guess.length === 5) {
@@ -74,7 +76,7 @@ const addLetter = (char) => {               // ADD LETTER TO GUESS WORD ARRAY
     }
 }
 
-async function validWordCheck() {      // VALIDATE WORD IN DICTIONARY
+async function validWordCheck() {           // VALIDATE WORD IN DICTIONARY
     let guessString = guess.join('');
 
     const response = await fetch(`https://words.dev-apis.com/validate-word`, {
@@ -96,13 +98,13 @@ async function validWordCheck() {      // VALIDATE WORD IN DICTIONARY
     return verdict;
 }
 
-const nextRow = () => {
+const nextRow = () => {                     // FOCUS ON NEXT ROUND
   while (guess[0]){guess.pop();}
   if (round === 7 && didYouWin === false) youLost();
   inputs[round*5-5].focus();
 }
 
-function charCheck() {
+function charCheck() {                      // CHECKS TO SEE WHATS RIGHT/WRONG 
   let goodGuess = 0;
   let secLetter = theSecretWordArray
 
@@ -121,16 +123,23 @@ function charCheck() {
 
 };
 
-function youWin() {
+function youWin() {                         // TRIGGER WIN
   didYouWin = true;
   document.getElementById("header").innerHTML = "YOU WIN!";
+
+  for (let i = 0; i < 30; i++) {
+    inputs[i].style.backgroundColor = 'white';
+    inputs[i].style.color = 'gray';
+    
+  }
+
   for (let i = 0; i < 5; i++) {
     inputs[round*5-5 + i].style.backgroundColor = 'green';
     inputs[round*5-5 + i].style.color = 'white';
   }
 }
 
-function youLost() {
+function youLost() {                        // TRIGGER LOSS
   document.getElementById("header").innerHTML = "Better Luck Tomorrow!";
   document.getElementById("theWord").innerHTML = theSecretWord.toUpperCase();
   theWord.style.backgroundColor = 'red';
