@@ -169,9 +169,13 @@ function charCheck() {
 };
 
 function youWin() {
-  alert("winner");
+  document.getElementById("header").innerHTML = "YOU WIN!";
+  let inputs = document.getElementsByTagName('input');
+  for (let i = 0; i < 5; i++) {
+    inputs[round*5-5 + i].style.backgroundColor = 'green';
+    inputs[round*5-5 + i].style.color = 'white';
 
-  
+  }
 
 
 
