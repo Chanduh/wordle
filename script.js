@@ -2,6 +2,7 @@
 let round = 1;
 let column = 0;
 let theSecretWord;
+let theSecretWordArray;
 const theSecretObj = {};
 const guess = [];
 const letterBoxes = document.getElementsByClassName('inputs');
@@ -10,7 +11,7 @@ async function getWord() {                // GET WORD
   const secretWord = await fetch("https://words.dev-apis.com/word-of-the-day");
   const processedResponse = await secretWord.json();
   theSecretWord = processedResponse.word;
-  theSecretWord = theSecretWord.split('');
+  theSecretWordArray = theSecretWord.split('');
 
   for (const char of theSecretWord){
     if (!theSecretObj[char]) theSecretObj[char] = 1;
@@ -56,11 +57,11 @@ function backspace (x) {                    // DELETE LAST CHARACTER
     column--;
 
     if (round === 1){
-      if (guess.length === 0) letter1.focus();
-      else if (guess.length === 1) letter2.focus();
-      else if (guess.length === 2) letter3.focus();
-      else if (guess.length === 3) letter4.focus();
-      else if (guess.length === 4) letter5.focus();
+      if (guess.length === 0) letter11.focus();
+      else if (guess.length === 1) letter12.focus();
+      else if (guess.length === 2) letter13.focus();
+      else if (guess.length === 3) letter14.focus();
+      else if (guess.length === 4) letter15.focus();
     }
     if (round === 2){
       if (guess.length === 0) letter21.focus();
@@ -128,7 +129,7 @@ async function validWordCheck() {      // VALIDATE WORD IN DICTIONARY
     const verdict = await response.json();
 
     if (verdict.validWord === true){
-    // charCheck();
+    charCheck();
     round++;
     column = 0;
     nextRow();
@@ -150,21 +151,31 @@ const nextRow = () => {
 
 
 
-// function charCheck() {
-//   let goodGuess = 0;
+function charCheck() {
+  let goodGuess = 0;
+  let tester = theSecretWordArray
 
-//   for (let i = 0; i < 5; i++){
-//     if (guess[i] === theSecretWord[i]) {
-//       goodGuess++;
-//       document.getElementById('letter11').style.backgroundColor = '#ff0000';    }
-//     if (guess[i] !== theSecretWord[i] && theSecretObj[theSecretWord]) {
-//       letter[round][i+1].style.backgroundColor = 'yellow';
-//     }
-//   }
+  for (let i = 0; i < 5; i++){
+    if (guess[i] === tester[i]) {
+      goodGuess++;
+    }
+    if (guess[i] !== tester[i] && theSecretObj[tester]) {
+      
+    }
+  }
 
-//   if (goodGuess === 5) youWin();
+  if (goodGuess === 5) youWin();
 
-// };
+};
+
+function youWin() {
+  alert("winner");
+
+  
+
+
+
+}
 
 
 
