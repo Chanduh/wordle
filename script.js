@@ -6,6 +6,7 @@ let theSecretWordArray;
 const theSecretObj = {};
 const guess = [];
 let didYouWin = false;
+let disableFocus = false;
 let inputs = document.getElementsByTagName('input');
 
 async function getWord() {                // GET WORD
@@ -112,9 +113,15 @@ async function validWordCheck() {           // VALIDATE WORD IN DICTIONARY
 }
 
 const nextRow = () => {                     // FOCUS ON NEXT ROUND
-  while (guess[0]){guess.pop();}
-  if (round === 7 && didYouWin === false) youLost();
-  inputs[round*5-5].focus();
+  if (disableFocus === false){
+    while (guess[0]){guess.pop();}
+      if (round === 7 && didYouWin === false) youLost();
+      inputs[round*5-5].focus();
+}
+  else {
+    inputs[round*5-5].focus();
+    inputs[round*5-5].blur();
+  }
 }
 
 function charCheck() {                      // CHECKS TO SEE WHATS RIGHT/WRONG 
@@ -150,6 +157,8 @@ function youWin() {                         // TRIGGER WIN
     inputs[round*5-5 + i].style.backgroundColor = 'green';
     inputs[round*5-5 + i].style.color = 'white';
   }
+
+disableFocus = true;
 }
 
 function youLost() {                        // TRIGGER LOSS
